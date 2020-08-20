@@ -14,8 +14,8 @@ const AddReviewInitiator = async (id, name, review) => {
     const addRestoReview = await RestoSource.addReview(dataInput);
     AlertInitiator('Thank you for your review!');
     reviewContainer.innerHTML = '';
-    addRestoReview.customerReviews.forEach((custReview) => {
-      reviewContainer.innerHTML += createReviewTemplate(custReview);
+    addRestoReview.customerReviews.forEach((customerReview) => {
+      reviewContainer.innerHTML += createReviewTemplate(customerReview);
     });
   } catch (err) {
     console.log(err);

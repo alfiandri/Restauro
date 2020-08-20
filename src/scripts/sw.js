@@ -15,6 +15,11 @@ workbox.precaching.precacheAndRoute(
         'https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat&display=swap',
       revision: 1,
     },
+    {
+      url:
+        'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+      revision: 1,
+    },
   ],
   {
     ignoreURLParametersMatching: [/.*/],
@@ -56,7 +61,7 @@ self.addEventListener('push', (event) => {
   }
   const options = {
     body,
-    icon: '/img/icon-72x72.png',
+    icon: '../public/icons/icon-192x192.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),

@@ -1,5 +1,9 @@
 /* tablet breakpoint start */
 @media screen and (min-width: 576px) {
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('/images/hero-image_2-medium.jpg');
+  }
+
   .container {
     max-width: 540px;
   }
@@ -51,6 +55,10 @@
 
 /* dekstop breakpoint start */
 @media screen and (min-width: 992px) {
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('/images/hero-image_2-large.jpg');
+  }
+
   .container {
     max-width: 1140px;
   }
@@ -108,7 +116,6 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px 10px;
     width: 100%;
-    /*max-width: 410px;*/
     margin: 0 auto;
     padding: 0 15px;
   }
@@ -125,6 +132,10 @@
 
 /* For large screen */
 @media screen and (min-width: 1200px) {
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('/images/hero-image_2-xl.jpg');
+  }
+
   .container {
     max-width: 1140px;
   }
@@ -134,7 +145,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 16px 10px;
     width: 100%;
-    /*max-width: 410px;*/
     margin: 0 auto;
     padding: 0 25px;
   }

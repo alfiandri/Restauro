@@ -1,6 +1,6 @@
 import Loading from '../templates/loading';
 import RestoSource from '../../data/resto-source';
-import { createRestaurantItemTemplate } from '../templates/template-creator';
+import { createRestaurantItemTemplate, createSkeletonRestaurantTemplate } from '../templates/template-creator';
 
 const Home = {
   async render() {
@@ -11,7 +11,7 @@ const Home = {
       <div id="loading"></div>
       
       <div class="restaurant-list">
-        
+        ${createSkeletonRestaurantTemplate(10)}
       </div>
     </section>
     `;

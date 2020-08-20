@@ -20,6 +20,16 @@ fs.readdirSync(target).forEach((image) => {
       ),
     );
 
+  // mengubah ukuran gambar dengan lebar 550px, dengan prefix -medium.jpg
+  sharp(`${target}/${image}`)
+    .resize(550)
+    .toFile(
+      path.resolve(
+        __dirname,
+        `${destination}/${image.split('.').slice(0, -1).join('.')}-medium.jpg`,
+      ),
+    );
+
   // mengubah ukuran gambar dengan lebar 400px, dengan prefix -small.jpg
   sharp(`${target}/${image}`)
     .resize(400)
@@ -33,6 +43,9 @@ fs.readdirSync(target).forEach((image) => {
   sharp(`${target}/${image}`)
     .resize(1800)
     .toFile(
-      path.resolve(__dirname, `${destination}/${image.split('.').slice(0, -1).join('.')}-xl.jpg`),
+      path.resolve(
+        __dirname,
+        `${destination}/${image.split('.').slice(0, -1).join('.')}-xl.jpg`
+      ),
     );
 });

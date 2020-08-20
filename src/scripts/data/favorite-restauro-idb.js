@@ -11,12 +11,18 @@ const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
 
 const FavoriteRestauroIdb = {
   async getRestauro(id) {
+    if (!id) {
+      return;
+    }
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   },
   async getAllRestauros() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
   async putRestauro(restauro) {
+    if (!restauro.hasOwnProperty('id')) {
+      return;
+    }
     return (await dbPromise).put(OBJECT_STORE_NAME, restauro);
   },
   async deleteRestauro(id) {

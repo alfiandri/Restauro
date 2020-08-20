@@ -22,7 +22,7 @@ const createRestaurantDetailTemplate = (restaurant) => {
 
       <div class="restaurant-detail-card">
         <div class="retaurant-detail-1">
-          <div class="restaurant-detail-badge">${restaurant.city}</div>
+          <div class="badge">${restaurant.city}</div>
           <div class="restaurant-detail-rating" aria-label="Rating Restaurant ${restaurant.name} ${restauranRating}">${ratingHtml} (${restauranRating})</div>
           <img class="restaurant-detail-image" alt="Image ${restaurant.name}" src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" crossorigin="anonymous"/>
         </div>
@@ -116,7 +116,13 @@ const createRestaurantItemTemplate = (restaurant) => {
         <div class="restaurant-card">
           <div class="badge">${restaurant.city}</div>
           <div class="restaurant-tumb">
-            <img src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="Gambar Restoran ${restaurant.name}">
+            <img
+              class="lazyload"
+              src="./images/placeholder-medium.jpg"
+              data-src="${CONFIG.BASE_IMAGE_URL_SM + restaurant.pictureId}"
+              crossorigin="anonymous"
+              alt="Gambar Restoran ${restaurant.name}"
+            />
           </div>
           <div class="restaurant-details">
             <span class="restaurant-rating" aria-label="Rating Restaurant ${restaurant.name} ${restauranRating}">${ratingHtml} (${restauranRating})</span>
@@ -128,11 +134,39 @@ const createRestaurantItemTemplate = (restaurant) => {
     </article>`;
 };
 
+const createSkeletonRestaurantTemplate = (count) => {
+  let template = '';
+
+  for (let i = 0; i < count; i += 1) {
+    template += `
+      <article class="restaurant-item">
+        <div class="restaurant-card">
+          <div class="badge">Lorem</div>
+          <div class="restaurant-tumb">
+            <img
+              src="./images/placeholder-medium.jpg"
+              alt="Skeleton"
+              srcset="./images/placeholder-small.jpg 480w, ./images/placeholder-medium.jpg 800w"
+              sizes="(max-width: 600px) 480px, 800px"
+              crossorigin="anonymous"
+            />
+          </div>
+          <div class="restaurant-details">
+            <h2 class="restaurant-name skeleton">Lorem ipsum dolor sit</h2>
+            <p class="skeleton">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci alias aspernatur, assumenda aut consectetur consequuntur debitis deleniti dicta dolorem dolorum eos exercitationem labore laboriosam magni nihil, nobis obcaecati optio perspiciatis placeat qui recusandae saepe sapiente sequi totam ullam ut.</p>
+          </div>
+        </div>
+      </article>
+  `;
+  }
+  return template;
+};
+
 const createReviewTemplate = (custReview) => `
   <div class="restaurant-detail-review-item">
     <div class="restaurant-review-body">
       <p class="restaurant-review-name">@${custReview.name} says</p>
-      ${custReview.review}
+      <span class="restaurant-review-text">${custReview.review}</span>
       <p class="restaurant-review-date">${custReview.date}</p>
     </div>
   </div>
@@ -140,6 +174,7 @@ const createReviewTemplate = (custReview) => `
 
 export {
   createRestaurantItemTemplate,
+  createSkeletonRestaurantTemplate,
   createRestaurantDetailTemplate,
   createReviewTemplate,
 };

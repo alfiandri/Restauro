@@ -6,8 +6,10 @@
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build-image": "node sharp.js",
     "test": "karma start",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "e2e": "codeceptjs run --steps"
   },
   "keywords": [],
   "author": "Alfiandri Putra Perdana <alfiandri.putra@gmail.com>",
@@ -17,12 +19,12 @@
     "@babel/preset-env": "^7.10.4",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "codeceptjs": "^2.6.9",
+    "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.6.0",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "file-loader": "^6.0.0",
-    "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^4.3.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.0",
@@ -49,6 +51,7 @@
   },
   "dependencies": {
     "idb": "^5.0.4",
-    "regenerator-runtime": "^0.13.5"
+    "regenerator-runtime": "^0.13.5",
+    "lazysizes": "^5.2.2"
   }
 }

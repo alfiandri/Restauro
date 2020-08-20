@@ -1,9 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-const imageminPngquant = require('imagemin-pngquant');
+const ImageminPngquant = require('imagemin-pngquant');
 const path = require('path');
 
 module.exports = {
@@ -24,26 +25,6 @@ module.exports = {
             loader: 'css-loader',
           },
         ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'images/',
-          },
-        }],
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/',
-          },
-        }],
       },
     ],
   },
@@ -69,7 +50,7 @@ module.exports = {
       filename: 'index.html',
       favicon: './src/public/favicon.ico',
     }),
-    new WorkboxWebpackPlugin.InjectManifest({
+    new InjectManifest({
       swSrc: 'src/scripts/sw.js',
       swDest: 'sw.js',
     }),
@@ -79,9 +60,20 @@ module.exports = {
           quality: 50,
           progressive: true,
         }),
-        imageminPngquant({
+        ImageminPngquant({
           quality: [0.3, 0.5],
         }),
+      ],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/public/'),
+          to: path.resolve(__dirname, 'dist/'),
+          globOptions: {
+            ignore: ['**/images/**'],
+          },
+        },
       ],
     }),
   ],

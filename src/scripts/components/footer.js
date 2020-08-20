@@ -8,9 +8,11 @@ class Footer extends HTMLElement {
     const getYear = fullDate.getFullYear();
 
     this.innerHTML = `
-    <p>
-      Copyright &copy; ${getYear} Alfiandri Putra Perdana. All Rights Reserved.
-    </p>`;
+    <footer>
+      <p>
+        Copyright &copy; ${getYear} Alfiandri Putra Perdana. All Rights Reserved.
+      </p>
+    </footer>`;
   }
 }
 

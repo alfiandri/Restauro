@@ -1,9 +1,9 @@
-import { itActsAsFavoriteRestaurantModel } from './contract/favRestaurantContract';
+import { itActsAsFavoriteRestauroModel } from './contract/favRestauroContract';
 
 let favoriteRestaurants = [];
 
 const FavoriteRestaurantArray = {
-  getRestaurant(id) {
+  getRestauro(id) {
     if (!id) {
       return;
     }
@@ -11,33 +11,29 @@ const FavoriteRestaurantArray = {
     return favoriteRestaurants.find((restaurant) => restaurant.id === id);
   },
 
-  getAllRestaurants() {
+  getAllRestauros() {
     return favoriteRestaurants;
   },
 
-  putRestaurant(restaurant) {
+  putRestauro(restaurant) {
     if (!restaurant.hasOwnProperty('id')) {
       return;
     }
 
-    // pastikan id ini belum ada dalam daftar favoriteRestaurant
-    if (this.getRestaurant(restaurant.id)) {
+    if (this.getRestauro(restaurant.id)) {
       return;
     }
 
     favoriteRestaurants.push(restaurant);
   },
 
-  deleteRestaurant(id) {
-    // cara boros menghapus restaurant dengan meng-copy restaurant yang ada
-    // kecuali restaurant dengan id === id
+  deleteRestauro(id) {
     favoriteRestaurants = favoriteRestaurants.filter((restaurant) => restaurant.id !== id);
   },
 };
 
 describe('Favorite Restaurant Array Contract Test Implementation', () => {
-  // eslint-disable-next-line no-return-assign
   afterEach(() => (favoriteRestaurants = []));
 
-  itActsAsFavoriteRestaurantModel(FavoriteRestaurantArray);
+  itActsAsFavoriteRestauroModel(FavoriteRestaurantArray);
 });

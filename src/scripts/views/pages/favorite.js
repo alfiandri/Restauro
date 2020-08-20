@@ -25,9 +25,7 @@ const Favorite = {
     try {
       const data = await FavoriteRestauroIdb.getAllRestauros();
       if (data.length === 0) {
-        loading.innerHTML = `
-          <h2 class="restaurant-error">You don't have any favorite Restaurant, please find one at <a href="#/home">Home</a></h2>
-        `;
+        loading.innerHTML = '<h2 class="restaurant-error">You don\'t have any favorite Restaurant, please find one at <a href="#/home">Home</a></h2>';
 
         return;
       }
